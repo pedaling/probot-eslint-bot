@@ -1,4 +1,4 @@
-# eslint-bot
+# probot-eslint-bot
 
 An automated js code **es**linting bot that integrates with GitHub pull requests.
 
