@@ -34,8 +34,7 @@ const lint = async (context) => {
   }));
 
   const { files } = compare.data;
-
-  const data = await Promise.all(files.filter(jsFileFilter).map(async (file) => {
+  const data = await Promise.all(files.filter(f => f.status !== 'removed').filter(jsFileFilter).map(async (file) => {
     const { data: { content } } = await context.github.repos.getContent({
       owner,
       repo,
