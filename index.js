@@ -54,7 +54,7 @@ const lint = async (context) => {
   data.forEach((data) => {
     const { results: [result] } = eslint.executeOnText(data.content, data.filename);
     const eslintErrors = result.messages;
-    comments.push(...eslintErrors.filter(error => data.lineMap[error.line]).map(error => ({
+    comments.push(...eslintErrors.filter(error => data.lineMap[error.line] && error.severity === 2).map(error => ({
       path: data.filename,
       position: data.lineMap[error.line],
       body: `**${error.ruleId}**: ${error.message}`,
